@@ -111,7 +111,7 @@
 
 		<header-file src="src/ios/FCMNotificationCenterDelegate.h" />
 		<source-file src="src/ios/FCMNotificationCenterDelegate.m" />
-		<framework src="Firebase/Messaging" type="podspec" spec="7.4.0"/>
+		<framework src="Firebase/Messaging" type="podspec" spec="~> 7.4.0"/>
 		<!-- FIREBASE COCOAPODS-->
 		<!-- <podspec>
 			<config>
