@@ -113,11 +113,19 @@
 		<source-file src="src/ios/FCMNotificationCenterDelegate.m" />
 
 		<!-- FIREBASE COCOAPODS-->
-		<podspec>
+		<!-- <podspec>
 			<config>
 				<source url="https://github.com/CocoaPods/Specs.git"/>
 			</config>
 			<pods>
+				<pod name="Firebase/Messaging" spec="7.4.0"/>
+			</pods>
+		</podspec> -->
+		<podspec>
+			<config>
+				<source url="https://cdn.cocoapods.org/"/>
+			</config>
+			<pods use-frameworks="true">
 				<pod name="Firebase/Messaging" spec="7.4.0"/>
 			</pods>
 		</podspec>
