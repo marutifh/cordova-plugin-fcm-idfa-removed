@@ -111,7 +111,7 @@
 
 		<header-file src="src/ios/FCMNotificationCenterDelegate.h" />
 		<source-file src="src/ios/FCMNotificationCenterDelegate.m" />
-
+		<framework src="Firebase/Messaging" type="podspec" spec="7.4.0"/>
 		<!-- FIREBASE COCOAPODS-->
 		<!-- <podspec>
 			<config>
@@ -121,14 +121,14 @@
 				<pod name="Firebase/Messaging" spec="7.4.0"/>
 			</pods>
 		</podspec> -->
-		<podspec>
+		<!-- <podspec>
 			<config>
 				<source url="https://cdn.cocoapods.org/"/>
 			</config>
 			<pods use-frameworks="true">
 				<pod name="Firebase/Messaging" spec="7.4.0"/>
 			</pods>
-		</podspec>
+		</podspec> -->
 	</platform>
 
 	<!-- COPY FCM CONFIG FILES TO PLATFORM AFTER PLUGIN INSTALL OR PLATFORM PREPARE -->
