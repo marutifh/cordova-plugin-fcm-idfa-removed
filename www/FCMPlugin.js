@@ -1,5 +1,12 @@
 var exec = require('cordova/exec');
 
+var execAsPromise = function (command, args) {
+    if (args === void 0) { args = []; }
+    return new Promise(function (resolve, reject) {
+        window.cordova.exec(resolve, reject, 'FCMPlugin', command, args);
+    });
+};
+
 function FCMPlugin() { 
 	console.log("FCMPlugin.js: is created");
 }
