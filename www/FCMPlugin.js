@@ -7,6 +7,16 @@ var execAsPromise = function (command, args) {
     });
 };
 
+var asDisposableListener = function (eventTarget, eventName, callback, options) {
+    if (options === void 0) { options = {}; }
+    var once = options.once;
+    var handler = function (event) { return callback(event.detail); };
+    eventTarget.addEventListener(eventName, handler, { passive: true, once: once });
+    return {
+        dispose: function () { return eventTarget.removeEventListener(eventName, handler); },
+    };
+};
+
 function FCMPlugin() { 
 	console.log("FCMPlugin.js: is created");
 }
@@ -22,11 +32,15 @@ FCMPlugin.prototype.unsubscribeFromTopic = function( topic, success, error ){
 // NOTIFICATION CALLBACK //
 FCMPlugin.prototype.onNotification = function( callback, success, error ){
 	FCMPlugin.prototype.onNotificationReceived = callback;
-	exec(success, error, "FCMPlugin", 'registerNotification',[]);
+	window.cordova.platformId === 'ios' ? 
+	asDisposableListener(this.eventTarget, 'notification', callback, options)
+	: exec(success, error, "FCMPlugin", 'registerNotification',[]);
 }
 // TOKEN REFRESH CALLBACK //
 FCMPlugin.prototype.onTokenRefresh = function( callback ){
-	FCMPlugin.prototype.onTokenRefreshReceived = callback;
+	window.cordova.platformId === 'ios' ? 
+	asDisposableListener(this.eventTarget, 'tokenRefresh', callback, options)
+	: FCMPlugin.prototype.onTokenRefreshReceived = callback;
 }
 // GET TOKEN //
 FCMPlugin.prototype.getToken = function( success, error ){
