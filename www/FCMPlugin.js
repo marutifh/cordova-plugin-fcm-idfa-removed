@@ -64,17 +64,17 @@ FCMPlugin.prototype.onNotification = function( callback, success, error ){
 	FCMPlugin.prototype.onNotificationReceived = callback;
 	if (window.cordova.platformId !== 'ios') {
 		exec(success, error, "FCMPlugin", 'registerNotification',[]);
-		return;
+	} else {
+		return asDisposableListener(this.eventTarget, 'notification', callback, {});
 	}
-	return asDisposableListener(this.eventTarget, 'notification', callback, {});
 }
 // TOKEN REFRESH CALLBACK //
 FCMPlugin.prototype.onTokenRefresh = function( callback ){
 	if (window.cordova.platformId !== 'ios') {
 		FCMPlugin.prototype.onTokenRefreshReceived = callback;
-		return;
+	} else {
+		return asDisposableListener(this.eventTarget, 'tokenRefresh', callback, {});
 	}
-	return asDisposableListener(this.eventTarget, 'tokenRefresh', callback, {});
 }
 // GET TOKEN //
 FCMPlugin.prototype.getToken = function( success, error ){
