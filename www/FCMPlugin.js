@@ -33,6 +33,17 @@ var bridgeNativeEvents = function (eventTarget) {
 
 function FCMPlugin() { 
 	console.log("FCMPlugin.js: is created");
+	function FCMPlugin() {
+        var _this = this;
+        this.eventTarget = document.createElement('div');
+        execAsPromise('ready')
+            .catch(function (error) { return console.log('FCM: Ready error: ', error); })
+            .then(function () {
+            console.log('FCM: Ready!');
+            bridgeNativeEvents(_this.eventTarget);
+        });
+        console.log('FCM: has been created');
+    }
 }
 
 // SUBSCRIBE TO TOPIC //
