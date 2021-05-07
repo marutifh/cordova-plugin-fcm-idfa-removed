@@ -14,8 +14,8 @@
 
 static BOOL appInForeground = YES;
 
-static NSString *notificationEventName = @"notification";
-static NSString *tokenRefreshCallback = @"tokenRefresh";
+static NSString *notificationEventName = @"FCMPlugin.onNotificationReceived";
+static NSString *tokenRefreshCallback = @"FCMPlugin.onTokenRefreshReceived";
 static NSString *jsEventBridgeCallbackId;
 static FCMPlugin *fcmPluginInstance;
 

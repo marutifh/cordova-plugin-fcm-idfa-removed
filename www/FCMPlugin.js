@@ -29,19 +29,32 @@ FCMPlugin.prototype.subscribeToTopic = function( topic, success, error ){
 FCMPlugin.prototype.unsubscribeFromTopic = function( topic, success, error ){
 	exec(success, error, "FCMPlugin", 'unsubscribeFromTopic', [topic]);
 }
+
 // NOTIFICATION CALLBACK //
 FCMPlugin.prototype.onNotification = function( callback, success, error ){
 	FCMPlugin.prototype.onNotificationReceived = callback;
-	window.cordova.platformId === 'ios' ? 
-	asDisposableListener(this.eventTarget, 'notification', callback, {})
-	: exec(success, error, "FCMPlugin", 'registerNotification',[]);
+	exec(success, error, "FCMPlugin", 'registerNotification',[]);
 }
 // TOKEN REFRESH CALLBACK //
 FCMPlugin.prototype.onTokenRefresh = function( callback ){
-	window.cordova.platformId === 'ios' ? 
-	asDisposableListener(this.eventTarget, 'tokenRefresh', callback, {})
-	: FCMPlugin.prototype.onTokenRefreshReceived = callback;
+	FCMPlugin.prototype.onTokenRefreshReceived = callback;
 }
+
+// NOTIFICATION CALLBACK //
+// asDisposableListener(this.eventTarget, 'notification', callback, {})
+// FCMPlugin.prototype.onNotification = function( callback, success, error ){
+// 	FCMPlugin.prototype.onNotificationReceived = callback;
+// 	window.cordova.platformId === 'ios' ? 
+// 	exec(success, error, "FCMPlugin", 'notification',[])
+// 	: exec(success, error, "FCMPlugin", 'registerNotification',[]);
+// }
+// // TOKEN REFRESH CALLBACK //
+// // asDisposableListener(this.eventTarget, 'tokenRefresh', callback, {})
+// FCMPlugin.prototype.onTokenRefresh = function( callback ){
+// 	window.cordova.platformId === 'ios' ? 
+// 	asDisposableListener(this.eventTarget, 'tokenRefresh', callback, {})
+// 	: FCMPlugin.prototype.onTokenRefreshReceived = callback;
+// }
 // GET TOKEN //
 FCMPlugin.prototype.getToken = function( success, error ){
 	exec(success, error, "FCMPlugin", 'getToken', []);
