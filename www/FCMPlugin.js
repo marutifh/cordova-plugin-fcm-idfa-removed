@@ -33,13 +33,13 @@ FCMPlugin.prototype.unsubscribeFromTopic = function( topic, success, error ){
 FCMPlugin.prototype.onNotification = function( callback, success, error ){
 	FCMPlugin.prototype.onNotificationReceived = callback;
 	window.cordova.platformId === 'ios' ? 
-	asDisposableListener(this.eventTarget, 'notification', callback, options)
+	asDisposableListener(this.eventTarget, 'notification', callback, {})
 	: exec(success, error, "FCMPlugin", 'registerNotification',[]);
 }
 // TOKEN REFRESH CALLBACK //
 FCMPlugin.prototype.onTokenRefresh = function( callback ){
 	window.cordova.platformId === 'ios' ? 
-	asDisposableListener(this.eventTarget, 'tokenRefresh', callback, options)
+	asDisposableListener(this.eventTarget, 'tokenRefresh', callback, {})
 	: FCMPlugin.prototype.onTokenRefreshReceived = callback;
 }
 // GET TOKEN //
