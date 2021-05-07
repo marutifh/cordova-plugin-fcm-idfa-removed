@@ -4,12 +4,23 @@
   "cordova_name": "Cordova FCM Push Plugin",
   "description": "Google Firebase Cloud Messaging Cordova Push Plugin",
   "license": "MIT",
+  "main": "www/FCMPlugin.js",
+  "typings": "typings/index.d.ts",
   "repo": "",
   "issue": "",
   "author": {
     "name": "Brice Powell",
     "email": "bpowell@healthrecoverysolutions.com"
   },
+  "scripts": {
+    "build": "npm run build:www;npm run build:ionic",
+    "build:www": "cd ./src/www;npm run build",
+    "build:ionic": "cd ./src/ionic;npm run build",
+    "prettier-src": "find ./src/ -name '*.js' -or -name '*.ts' -or -name '*.tsx' -or -name '*.scss' | grep -v node_modules | xargs npx prettier --write",
+    "prettier-scripts": "find ./scripts -name '*.js' | xargs npx prettier --write",
+    "prettier": "npm run prettier-src;npm run prettier-scripts",
+    "tslint": "npx tslint -p ./src/www --fix;npx tslint -p ./src/ionic --fix"
+},
   "repository": {
     "type": "git",
     "url": "https://github.com/bpowell15/hrs-cordova-plugin-fcm"
@@ -32,10 +43,12 @@
   ],
   "engines": [],
   "englishdoc": "",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "tslint": "^6.1.3",
+    "tslint-microsoft-contrib": "^6.2.0"
+  },
   "dependencies": {
-    "plist": "^3.0.1",
-    "xcode": "^3.0.1",
-    "xml-js": "^1.6.11",
-    "semver": "^7.3.2"
+    "typescript": "^4.1.3"
   }
 }
