@@ -192,7 +192,6 @@ static FCMPlugin *fcmPluginInstance;
 {
     NSLog(@"view registered for notifications");
 
-    notificatorReceptorReady = YES;
     NSData* lastPush = [AppDelegate getLastPush];
     if (lastPush != nil) {
         [FCMPlugin.fcmPlugin notifyOfMessage:lastPush];
