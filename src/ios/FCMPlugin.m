@@ -188,6 +188,21 @@ static FCMPlugin *fcmPluginInstance;
     }];
 }
 
+- (void) registerNotification:(CDVInvokedUrlCommand *)command
+{
+    NSLog(@"view registered for notifications");
+
+    notificatorReceptorReady = YES;
+    NSData* lastPush = [AppDelegate getLastPush];
+    if (lastPush != nil) {
+        [FCMPlugin.fcmPlugin notifyOfMessage:lastPush];
+    }
+
+    CDVPluginResult* pluginResult = nil;
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void)notifyOfMessage:(NSData *)payload {
     NSLog(@"notifyOfMessage payload: %@", payload);
     NSString* JSONString = [[NSString alloc] initWithBytes:[payload bytes] length:[payload length] encoding:NSUTF8StringEncoding];
